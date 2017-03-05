@@ -1,0 +1,1 @@
+﻿java org.antlr.v4.Tool  -Dlanguage=CSharp -package RestStandards.Rql.Grammar -visitor .\Rql.g4
