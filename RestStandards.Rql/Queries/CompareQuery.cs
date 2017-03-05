@@ -13,16 +13,6 @@ namespace RestStandards.Rql.Queries
         {
             var common = new CommonToken(34);
 
-            /*
-            var walker = new ParseTreeWalker();
-            var listener = new RqlListener();
-            walker.Walk(listener, tree);
-            */
-            
-           
-
-            var Id = Trees.FindAllTokenNodes(tree, 38).First().GetText();
-
             var opr = tree.GetChild(0).GetText();
             switch (opr)
             {
