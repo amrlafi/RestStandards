@@ -9,17 +9,16 @@ using RestStandards.Rql.Operations;
 
 namespace RestStandards.Rql
 {
-    public class OperationDiscoverer
+    public class OperationDiscovery
     {
         private static IEnumerable<Type> OperationTypes;  
-        static OperationDiscoverer()
+        static OperationDiscovery()
         {
             OperationTypes = Assembly.GetExecutingAssembly()
-                                 .GetTypes()
-                                 .Where(t => t.Namespace == typeof(UnknownOperation).Namespace)
-                                 .Where(t => t.GetCustomAttributes(typeof(SupportedOperatorsAttribute), true).Length > 0)
-                                 .Where(t => t.BaseType == typeof(OperationBase));
-                                 
+                            .GetTypes()
+                            .Where(t => t.Namespace == typeof(UnknownOperation).Namespace)
+                            .Where(t => t.BaseType == typeof(OperationBase))
+                            .Where(t => t.GetCustomAttributes(typeof(SupportedOperatorsAttribute), true).Length > 0);    
         }
 
         public IOperation Discover(IParseTree tree)

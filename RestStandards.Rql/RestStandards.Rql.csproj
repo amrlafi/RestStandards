@@ -54,7 +54,7 @@
     <Compile Include="IOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OperationBase.cs" />
-    <Compile Include="OperationDiscoverer.cs" />
+    <Compile Include="OperationDiscovery.cs" />
     <Compile Include="RqlListener.cs" />
     <Compile Include="RqlVisitor.cs" />
     <Compile Include="Operations\CompareOperation.cs" />

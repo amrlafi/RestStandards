@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace RestStandards.Rql
+﻿namespace RestStandards.Rql
 {
     public interface IOperation
     {
-
+        void Build();
     }
 }

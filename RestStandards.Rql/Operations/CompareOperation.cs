@@ -1,4 +1,4 @@
-﻿using Antlr4.Runtime;
+﻿using System.Linq;
 using Antlr4.Runtime.Tree;
 
 namespace RestStandards.Rql.Operations
@@ -6,43 +6,51 @@ namespace RestStandards.Rql.Operations
     [SupportedOperators("eq", "lt", "le", "gt", "ge", "ne")]
     public class CompareOperation : OperationBase
     {
-        private readonly CompareType _type;
+        private const int IdTokenType = 38;
+        private const int ValueTokenType = 16;
 
         public CompareOperation(IParseTree tree) : base(tree)
         {
-            var common = new CommonToken(34);
+            Build();
+        }
 
-            var opr = tree.GetChild(0).GetText();
+        public Comparison Comparison { get; private set; }
+        public string ID { set; get; }
+        public string Value { set; get; }
+
+        public override void Build()
+        {
+            var opr = Tree.GetChild(0).GetText();
             switch (opr)
             {
                 case "eq":
-                    _type = CompareType.Equal;
+                    Comparison = Comparison.Equal;
                     break;
                 case "lt":
-                    _type = CompareType.LessThan;
+                    Comparison = Comparison.LessThan;
                     break;
                 case "le":
-                    _type = CompareType.LessThanOrEqual;
+                    Comparison = Comparison.LessThanOrEqual;
                     break;
                 case "gt":
-                    _type = CompareType.GreaterThan;
+                    Comparison = Comparison.GreaterThan;
                     break;
                 case "ge":
-                    _type = CompareType.GreaterThanOrEqual;
+                    Comparison = Comparison.GreaterThanOrEqual;
                     break;
                 case "ne":
-                    _type = CompareType.NotEqual;
+                    Comparison = Comparison.NotEqual;
                     break;
                 default:
                     throw new UnsupportedOperatorException(opr, typeof(CompareOperation));
             }
+
+            ID = Trees.FindAllTokenNodes(Tree, IdTokenType).First().GetText();
+            Value = Trees.FindAllTokenNodes(Tree, ValueTokenType).First().GetText();
         }
-
-        public CompareType Type { get { return _type; } }
-
     }
 
-    public enum CompareType
+    public enum Comparison
     {
         Equal,
         NotEqual,

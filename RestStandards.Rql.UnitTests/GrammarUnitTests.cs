@@ -37,8 +37,10 @@ namespace RestStandards.Rql.UnitTests
             var type = visitor.VisitOpr(opr);
             Assert.IsInstanceOfType(type, typeof(CompareOperation));
 
-            var compareQuery = (CompareOperation)type;
-            Assert.AreEqual(CompareType.Equal, compareQuery.Type);
+            var compareOperation = (CompareOperation)type;
+            Assert.AreEqual(Comparison.Equal, compareOperation.Comparison);
+            Assert.AreEqual("foo", compareOperation.ID);
+            Assert.AreEqual("3", compareOperation.Value);
         }
     }
 }

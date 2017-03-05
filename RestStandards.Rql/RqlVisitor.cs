@@ -5,18 +5,18 @@ namespace RestStandards.Rql
 {
     public class RqlVisitor : RqlBaseVisitor<object>
     {
-        private readonly OperationDiscoverer _operationDiscoverer;
+        private readonly OperationDiscovery _operationDiscovery;
 
         public RqlVisitor()
         {
-            _operationDiscoverer = new OperationDiscoverer();
+            _operationDiscovery = new OperationDiscovery();
         }
 
         #region Overrides
 
         public override object VisitOpr([NotNull] RqlParser.OprContext context)
         {
-            return _operationDiscoverer.Discover(context);
+            return _operationDiscovery.Discover(context);
         }
 
         #endregion
