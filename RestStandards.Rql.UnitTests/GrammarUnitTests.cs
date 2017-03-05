@@ -1,7 +1,7 @@
 ﻿using Antlr4.Runtime;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using RestStandards.Rql.Queries;
+using RestStandards.Rql.Operations;
 using RestStandards.Rql.Grammar;
 
 namespace RestStandards.Rql.UnitTests
@@ -19,25 +19,25 @@ namespace RestStandards.Rql.UnitTests
 
 
         [TestMethod]
-        public void ShouldReturnUnknowQueryIfNotRecongnized()
+        public void ShouldReturnUnknowOperationIfNotRecongnized()
         {
             var parser = GetParser("asdsdsasda");
-            var query = parser.query();
+            var opr = parser.opr();
             var visitor = new RqlVisitor();
-            var type = visitor.VisitQuery(query);
-            Assert.IsInstanceOfType(type, typeof(UnknownQuery));
+            var type = visitor.VisitOpr(opr);
+            Assert.IsInstanceOfType(type, typeof(UnknownOperation));
         }
 
         [TestMethod]
         public void ShouldHandleEqual()
         {
             var parser = GetParser("eq(foo,3)");
-            var query = parser.query();
+            var opr = parser.opr();
             var visitor = new RqlVisitor();
-            var type = visitor.VisitQuery(query);
-            Assert.IsInstanceOfType(type, typeof(CompareQuery));
+            var type = visitor.VisitOpr(opr);
+            Assert.IsInstanceOfType(type, typeof(CompareOperation));
 
-            var compareQuery = (CompareQuery)type;
+            var compareQuery = (CompareOperation)type;
             Assert.AreEqual(CompareType.Equal, compareQuery.Type);
         }
     }

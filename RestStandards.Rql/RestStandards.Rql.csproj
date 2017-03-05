@@ -51,14 +51,14 @@
     <Compile Include="Grammar\RqlListener.cs" />
     <Compile Include="Grammar\RqlParser.cs" />
     <Compile Include="Grammar\RqlVisitor.cs" />
-    <Compile Include="IQuery.cs" />
+    <Compile Include="IOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryBase.cs" />
-    <Compile Include="QueryDiscoverer.cs" />
+    <Compile Include="OperationBase.cs" />
+    <Compile Include="OperationDiscoverer.cs" />
     <Compile Include="RqlListener.cs" />
     <Compile Include="RqlVisitor.cs" />
-    <Compile Include="Queries\CompareQuery.cs" />
-    <Compile Include="Queries\UnknownQuery.cs" />
+    <Compile Include="Operations\CompareOperation.cs" />
+    <Compile Include="Operations\UnknownOperation.cs" />
     <Compile Include="SupportedOperatorsAttribute.cs" />
     <Compile Include="UnsupportedOperatorException.cs" />
   </ItemGroup>

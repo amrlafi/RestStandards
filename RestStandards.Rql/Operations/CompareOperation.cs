@@ -1,15 +1,14 @@
-﻿using System.Linq;
-using Antlr4.Runtime;
+﻿using Antlr4.Runtime;
 using Antlr4.Runtime.Tree;
 
-namespace RestStandards.Rql.Queries
+namespace RestStandards.Rql.Operations
 {
     [SupportedOperators("eq", "lt", "le", "gt", "ge", "ne")]
-    public class CompareQuery : QueryBase
+    public class CompareOperation : OperationBase
     {
         private readonly CompareType _type;
 
-        public CompareQuery(IParseTree tree) : base(tree)
+        public CompareOperation(IParseTree tree) : base(tree)
         {
             var common = new CommonToken(34);
 
@@ -35,7 +34,7 @@ namespace RestStandards.Rql.Queries
                     _type = CompareType.NotEqual;
                     break;
                 default:
-                    throw new UnsupportedOperatorException(opr, typeof(CompareQuery));
+                    throw new UnsupportedOperatorException(opr, typeof(CompareOperation));
             }
         }
 

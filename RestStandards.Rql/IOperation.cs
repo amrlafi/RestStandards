@@ -2,7 +2,7 @@
 
 namespace RestStandards.Rql
 {
-    public interface IQuery
+    public interface IOperation
     {
 
     }
